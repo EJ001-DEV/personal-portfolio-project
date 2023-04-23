@@ -101,11 +101,10 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-'default': dj_database_url.config(     
-        default='postgres://EJ001-DEV:5CZ0EGeBOkKx@ep-soft-sky-263817.us-east-2.aws.neon.tech/neondb',        
-        conn_max_age=600    
-        )
+'default': dj_database_url.config(os.environ.get('DATABASE_URL'))
 } 
+
+
 '''
 DATABASES = {
     'default': dj_database_url.config(
