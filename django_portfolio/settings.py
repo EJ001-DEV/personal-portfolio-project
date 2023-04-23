@@ -134,7 +134,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+DEBUG = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
