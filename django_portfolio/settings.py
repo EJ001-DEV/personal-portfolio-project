@@ -142,7 +142,7 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
 #esta variable es la que se enarga de servir y mostrar las imagenes en el web browser
 MEDIA_URL = '/mediafiles/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
-MEDIAFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#MEDIAFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 '''
 if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
