@@ -104,23 +104,6 @@ DATABASES = {
 DATABASES = {
 'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=600 )
 } 
-'''
-DATABASES = {
-'default': dj_database_url.config(     
-        default='postgres://EJ001-DEV:5CZ0EGeBOkKx@ep-soft-sky-263817.us-east-2.aws.neon.tech/neondb',        
-        conn_max_age=600    
-        )
-}
-'''
-'''
-DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://postgres:postgres@localhost:5432/mysite',        conn_max_age=600    
-        )
-    }
-
-'''
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -158,7 +141,7 @@ USE_TZ = True
 
 # This setting tells Django at which URL static files are going to be served to the user.
 # Here, they well be accessible at your-domain.onrender.com/static/...
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 # Following settings only make sense on production and may break development environments.
 if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     # in your application directory on Render.
