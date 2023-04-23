@@ -83,11 +83,17 @@ WSGI_APPLICATION = 'django_portfolio.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-
-DATABASES = {
-'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=600 )
-} 
-
+if not DEBUG:
+    DATABASES = {
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'), conn_max_age=600 )
+    } 
+else:
+    DATABASES = {
+    'default': dj_database_url.config(     
+            default='postgres://EJ001-DEV:5CZ0EGeBOkKx@ep-soft-sky-263817.us-east-2.aws.neon.tech/neondb',        
+            conn_max_age=600    
+            )
+    }
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -135,8 +141,8 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
 
 MEDIA_URL = '/media/'
 
-#if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
