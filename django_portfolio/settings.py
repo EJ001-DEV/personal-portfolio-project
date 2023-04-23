@@ -139,7 +139,8 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL = '/mediafiles/'
+#esta variable es la que se enarga de servir y mostrar las imagenes en el web browser
+MEDIA_URL = '/media/'
 
 if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
