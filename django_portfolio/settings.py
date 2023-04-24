@@ -38,14 +38,16 @@ if RENDER_EXTERNAL_HOSTNAME:
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.messages',    
     'blog',
     'portfolio',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'cloudinary_storage.storage.MediaCloudinaryStorage',
 ]
 
 ROOT_URLCONF = 'django_portfolio.urls'
@@ -72,7 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media',
+                'django.template.context_processors.media',                
             ],
         },
     },
@@ -124,6 +127,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET')
+}
+
 #DEBUG = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
@@ -132,6 +141,7 @@ USE_TZ = True
 # Here, they well be accessible at your-domain.onrender.com/static/...
 STATIC_URL = '/static/'
 # Following settings only make sense on production and may break development environments.
+
 if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     # in your application directory on Render.
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -139,9 +149,13 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-#esta variable es la que se enarga de servir y mostrar las imagenes en el web browser
-MEDIA_URL = 'mediafiles/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+#esta variable es la que se encarga de servir y mostrar las imagenes en el web browser
+
+MEDIA_URL = '/media/'  # or any prefix you choose
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+#MEDIA_URL = 'mediafiles/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 #MEDIAFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 '''
 if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
