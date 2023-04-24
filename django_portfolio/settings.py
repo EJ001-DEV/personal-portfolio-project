@@ -152,6 +152,8 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
 #esta variable es la que se encarga de servir y mostrar las imagenes en el web browser
 
 MEDIA_URL = '/media/'  # or any prefix you choose
+
+
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 #MEDIA_URL = 'mediafiles/'
